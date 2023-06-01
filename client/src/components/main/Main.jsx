@@ -3,6 +3,8 @@ import './Main.css'
 import postImage1 from '../../images/post__image.jpg'
 import postImage2 from '../../images/post__image2.jpg'
 import postImage3 from '../../images/post__image3.jpg'
+
+
 function Main() {
     return (
         <div className="main">
