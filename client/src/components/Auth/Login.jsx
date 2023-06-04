@@ -1,10 +1,13 @@
-import React from 'react'
-import { Formik, Field, Form } from "formik";
-import * as Yup from 'yup';
+import React, { useState } from 'react'
+import { Formik, Field, Form } from "formik"
+import * as Yup from 'yup'
 import './Auth.css'
+import axios from 'axios'
+import { useDispatch, useSelector } from "react-redux"
+import { loginUser } from '../../features/authSlice'
 
 const LoginSchema = Yup.object().shape({
-    name: Yup.string()
+    username: Yup.string()
         .required('Name is required'),
     password: Yup.string()
         .required('Password is required'),
@@ -12,7 +15,12 @@ const LoginSchema = Yup.object().shape({
 
 
 
+
 function Login({ setLog }) {
+    const dispatch = useDispatch()
+    const [err, setErr] = useState(null)
+
+
     return (
         <div className="auth__modal">
             <div onClick={() => setLog(false)} className="overlay"></div>
@@ -20,24 +28,31 @@ function Login({ setLog }) {
                 <div onClick={() => setLog(false)} className="close">X</div>
                 <h2 className="auth__title">Login</h2>
                 <Formik
-                    initialValues={{ name: "", password: "" }}
+                    initialValues={{ username: "", password: "" }}
                     validationSchema={LoginSchema}
                     onSubmit={async (values) => {
-                        await new Promise((resolve) => setTimeout(resolve, 500));
-                        alert(JSON.stringify(values, null, 2));
+                        try {
+                            dispatch(loginUser(values))
+                            setLog(false)
+                        } catch (error) {
+                            console.log(error.response.data.message)
+                            setErr(error.response.data.message)
+                        }
+
                     }}
                 >
                     {({ errors, touched }) => (
-                        <Form className={errors.name || touched.name || errors.password || touched.password ? `form yup` : `form`}>
-                            <Field className="form__input" name="name" type="text" placeholder="Username" />
-                            {errors.name && touched.name ? (
-                                <div style={{ color: "red" }}>*{errors.name}</div>
+                        <Form className={errors.username || touched.username || errors.password || touched.password ? `form yup` : `form`}>
+                            <Field className="form__input" name="username" type="text" placeholder="Username" />
+                            {errors.username && touched.username ? (
+                                <div style={{ color: "red" }}>*{errors.username}</div>
                             ) : null}
                             <Field className="form__input" name="password" type="password" placeholder="Password" />
                             {errors.password && touched.password ? (
                                 <div style={{ color: "red" }}>*{errors.password}</div>
                             ) : null}
                             <button className="form__btn" type="submit">Sign In</button>
+                            {err && <div style={{ color: "red", textAlign: "center" }}>*{err}</div>}
                         </Form>
                     )}
                 </Formik>

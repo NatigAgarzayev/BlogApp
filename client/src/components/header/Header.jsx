@@ -3,11 +3,14 @@ import './Header.css'
 import { Link } from 'react-router-dom'
 import Register from '../Auth/Register'
 import Login from '../Auth/Login'
+import { useSelector } from 'react-redux'
+import { checkIsAuth } from '../../features/authSlice'
 function Header() {
 
-    const [isLogin, setIsLogin] = useState(false)
+    const isAuth = useSelector(checkIsAuth)
     const [reg, setReg] = useState(false)
     const [log, setLog] = useState(false)
+    const { user } = useSelector(state => state.auth)
 
     useEffect(() => {
         const body = document.querySelector('body')
@@ -24,7 +27,7 @@ function Header() {
     return (
         <>
             {
-                reg && <Register setReg={setReg} />
+                reg && <Register setLog={setLog} setReg={setReg} />
             }
             {
                 log && <Login setLog={setLog} />
@@ -35,10 +38,10 @@ function Header() {
                         <div className="logo">Blog</div>
                         <ul className="menu">
                             {
-                                isLogin ?
+                                isAuth ?
                                     <>
                                         <li className="menu__item"><Link to="/profile" className="menu__link">Profile</Link></li>
-                                        <li className="user__name">Username</li>
+                                        <li className="user__name">{user.username}</li>
                                     </>
                                     :
                                     <>
