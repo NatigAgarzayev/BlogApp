@@ -3,11 +3,12 @@ import './Header.css'
 import { Link } from 'react-router-dom'
 import Register from '../Auth/Register'
 import Login from '../Auth/Login'
-import { useSelector } from 'react-redux'
-import { checkIsAuth } from '../../features/authSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { checkIsAuth, logoutUser } from '../../features/authSlice'
 function Header() {
 
     const isAuth = useSelector(checkIsAuth)
+    const dispatch = useDispatch()
     const [reg, setReg] = useState(false)
     const [log, setLog] = useState(false)
     const { user } = useSelector(state => state.auth)
@@ -23,6 +24,10 @@ function Header() {
             body.style.marginRight = ""
         }
     }, [reg, log])
+
+    const logout = () => {
+        dispatch(logoutUser())
+    }
 
     return (
         <>
@@ -42,6 +47,7 @@ function Header() {
                                     <>
                                         <li className="menu__item"><Link to="/profile" className="menu__link">Profile</Link></li>
                                         <li className="user__name">{user.username}</li>
+                                        <li onClick={logout} className="user__name">Logout</li>
                                     </>
                                     :
                                     <>

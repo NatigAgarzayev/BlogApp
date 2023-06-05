@@ -23,14 +23,20 @@ export const getMe = createAsyncThunk("auth/getMe", async () => {
     }
 })
 
+export const logoutUser = createAsyncThunk("auth/logoutUser", async() => {
+    try {
+        const {data} = await axios.post("/auth/logout")
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        logout: (state) => {
-            state.user = null
-            state.token = null
-        }
+        
     },
     extraReducers: {
         [loginUser.fulfilled]: (state, action) => {
@@ -41,10 +47,13 @@ export const authSlice = createSlice({
             state.user = action.payload?.user
             state.token = action.payload?.token
         },
+        [logoutUser.fulfilled]: (state, action) => {
+            state.user = null
+            state.token = null
+        },
     }
 })
 
 // Action creators are generated for each case reducer function
-export const { logout } = authSlice.actions
 export const checkIsAuth = (state) => Boolean(state.auth.token)
 export default authSlice.reducer
