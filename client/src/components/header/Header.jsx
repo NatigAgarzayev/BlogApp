@@ -40,12 +40,14 @@ function Header() {
             <div className="header">
                 <div className='container'>
                     <div className="header__wrapper">
-                        <div className="logo">Blog</div>
+                        <Link to="/">
+                            <div className="logo">Blog</div>
+                        </Link>
                         <ul className="menu">
                             {
                                 isAuth ?
                                     <>
-                                        <li className="menu__item"><Link to="/profile" className="menu__link">Profile</Link></li>
+                                        <li className="menu__item"><Link to="/newpost" className="menu__link">New Post</Link></li>
                                         <li className="user__name">{user.username}</li>
                                         <li onClick={logout} className="user__name">Logout</li>
                                     </>

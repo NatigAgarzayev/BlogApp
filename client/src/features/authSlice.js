@@ -40,8 +40,8 @@ export const authSlice = createSlice({
     },
     extraReducers: {
         [loginUser.fulfilled]: (state, action) => {
-            state.user = action.payload.user
-            state.token = action.payload.token
+            state.user = action.payload?.user
+            state.token = action.payload?.token
         },
         [getMe.fulfilled]: (state, action) => {
             state.user = action.payload?.user

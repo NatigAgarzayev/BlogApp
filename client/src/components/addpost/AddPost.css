@@ -1,0 +1,119 @@
+.addpost {
+}
+.addpost h2{
+    margin-bottom: 10px;
+}
+.addpost__content{
+    display: flex;
+    gap: 50px;
+}
+.forms {
+    flex: 0 0 70%;
+}
+.forms > input{
+    width: 100%;
+    color: #333;
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    border-radius: 0.2rem;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    display: block;
+    border-bottom: 0.3rem solid transparent;
+    transition: all 0.3s;
+    outline: none;
+    border: 1px solid black;
+    margin-bottom: 30px;
+}
+.text__editor {
+    height: 300px;
+}
+.textarea__react{
+    height: 80%;
+}
+.options {
+    flex: 0 0 calc(30% - 50px);
+    display: flex;
+    flex-direction: column;
+}
+.upload__image {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 1px solid #333;
+    padding: 10px;
+}
+.upload__image > label{
+    text-decoration: underline;
+    color: dodgerblue;
+    margin-bottom: 10px;
+}
+.btn__delete {
+}
+.categories {
+    margin-top: 20px;
+    border: 1px solid #333;
+    padding: 10px;
+    flex: 2;
+}
+
+.categ{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+}
+
+.cat > label{
+    width: 100%;
+}
+
+.button__post{
+    align-items: center;
+    background-color: #06f;
+    border: 2px solid #06f;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    fill: #000;
+    font-family: Inter,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    height: 48px;
+    justify-content: center;
+    letter-spacing: -.8px;
+    line-height: 24px;
+    min-width: 140px;
+    outline: 0;
+    padding: 0 17px;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button__post:focus {
+    color: #171e29;
+}
+
+.button__post:hover {
+    background-color: #3385ff;
+    border-color: #3385ff;
+    fill: #06f;
+}
+
+.button__post:active {
+    background-color: #3385ff;
+    border-color: #3385ff;
+    fill: #06f;
+}

@@ -11,6 +11,9 @@ import Main from './components/main/Main';
 
 import { store } from './app/store'
 import { Provider } from 'react-redux'
+import AddPost from './components/addpost/AddPost';
+import PostPage from './components/postpage/PostPage';
+import UpdatePost from './components/updatePost/UpdatePost';
 
 const router = createBrowserRouter([
     {
@@ -20,7 +23,19 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Main />
-            }
+            },
+            {
+                path: "/newpost",
+                element: <AddPost />
+            },
+            {
+                path: "/:id",
+                element: <PostPage />
+            },
+            {
+                path: "/update/:id",
+                element: <UpdatePost />
+            },
         ]
     },
 ]);

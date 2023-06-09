@@ -6,7 +6,7 @@ export const register = (req, res) => {
     const q = "SELECT * FROM users WHERE username = ?"
 
     db.query(q, [req.body.username], (err, data) => {
-        if(err) res.json({message: err})
+        if(err) return res.json({message: err})
         if(data.length) return res.status(409).json({message: "User already exist!"})
 
 
@@ -31,18 +31,18 @@ export const login = (req, res) => {
     const q = "SELECT * FROM users WHERE username = ?"
 
     db.query(q, [req.body.username], (err, data) => {
-        if(err) res.json({message: err})
+        if(err) return res.json({message: err})
         if(data.length === 0) return res.status(404).json({message: "User is not found!"})
 
         const isPassCorrect = bcrypt.compareSync(req.body.password, data[0].password)
-
         if(!isPassCorrect) return res.status(400).json({message: "Wrong username or password!"})
 
         const token = jwt.sign({id:data[0].id}, "ismayil")
         const user = data[0]
         res.cookie("access_token", token, { httpOnly: true}).status(200).json({
             user,
-            token
+            token,
+            message: "Succesfully logged"
         })
 
     })
@@ -59,7 +59,8 @@ export const logout = (req, res) => {
 export const getMe = (req, res) => {
     const q = "SELECT * FROM users WHERE id = ?"
     db.query(q, [req.userId], (err, data) => {
-        if(err) res.json({message: err})
+        if(err) return res.json({message: err})
+        if(data.length === 0) return res.status(404).json({message: "User is not found!"})
         const token = jwt.sign({id:data[0].id}, "ismayil")
         const user = data[0]
         res.json({

@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Formik, Field, Form } from "formik"
 import * as Yup from 'yup'
 import './Auth.css'
-import axios from 'axios'
 import { useDispatch, useSelector } from "react-redux"
-import { loginUser } from '../../features/authSlice'
+import { checkIsAuth, loginUser } from '../../features/authSlice'
 
 const LoginSchema = Yup.object().shape({
     username: Yup.string()
@@ -15,12 +14,14 @@ const LoginSchema = Yup.object().shape({
 
 
 
-
 function Login({ setLog }) {
     const dispatch = useDispatch()
     const [err, setErr] = useState(null)
-
-
+    const isAuth = useSelector(checkIsAuth)
+    useEffect(() => {
+        if (isAuth) setLog(false)
+        else setLog(true)
+    }, [isAuth])
     return (
         <div className="auth__modal">
             <div onClick={() => setLog(false)} className="overlay"></div>
@@ -30,10 +31,9 @@ function Login({ setLog }) {
                 <Formik
                     initialValues={{ username: "", password: "" }}
                     validationSchema={LoginSchema}
-                    onSubmit={async (values) => {
+                    onSubmit={(values) => {
                         try {
                             dispatch(loginUser(values))
-                            setLog(false)
                         } catch (error) {
                             console.log(error.response.data.message)
                             setErr(error.response.data.message)
