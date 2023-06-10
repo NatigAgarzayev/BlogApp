@@ -3,7 +3,7 @@ import './Main.css'
 import axios from 'axios'
 import moment from "moment"
 import { useNavigate } from 'react-router-dom'
-
+import nopostimg from "../../images/nopost.png"
 
 function Main() {
 
@@ -47,7 +47,7 @@ function Main() {
                                         item.img ?
                                             <img src={item.img} alt="post_img" />
                                             :
-                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBKEGmmEQ4WlpXIfdqhhaFbJER2pXMLOFU3A&usqp=CAU" alt="post_img" />
+                                            <img src={nopostimg} alt="post_img" />
                                     }
                                 </div>
                                 <div className="post__info">

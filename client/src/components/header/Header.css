@@ -20,12 +20,6 @@
 .menu__item {
 }
 
-.user__name{
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    color: #1A1A1A;
-}
 .menu__link {
     font-weight: 400;
     font-size: 20px;
@@ -111,4 +105,42 @@
   border-color: #06f;
   color: #06f;
   fill: #06f;
+}
+
+.user__name{
+    position: relative;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1A1A1A;
+    cursor: pointer;
+}
+
+.submenu__logout{
+    font-size: 18px;
+}
+
+.overlay2{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.submenu__content{
+    position: absolute;
+    left: -100px;
+    width: 150px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.submenu__item{
+    padding: 10px;
+    border-bottom: 1px solid black;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.submenu__item:last-child{
+    border-bottom: none;
 }

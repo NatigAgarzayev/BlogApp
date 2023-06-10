@@ -26,7 +26,7 @@ function UpdatePost() {
             setImg(res.data.img)
             setCat(res.data.cat)
             const catCheck = document.querySelector(`input[value='${res.data.cat}']`)
-            catCheck.checked = true
+            if (catCheck) catCheck.checked = true
         }
         fetchPost()
     }, [])

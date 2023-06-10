@@ -12,7 +12,7 @@ const SignupSchema = Yup.object().shape({
     password: Yup.string()
         .min(8, 'At least 8 letters!')
         .max(16, 'Max is 16 letters!')
-        .required('Password is required'),
+        .required('Password is required')
 });
 
 
@@ -50,6 +50,7 @@ function Register({ setLog, setReg }) {
                             {errors.password && touched.password ? (
                                 <div style={{ color: "red" }}>*{errors.password}</div>
                             ) : null}
+                            <Field className="form__input" name="img" type="text" placeholder="Your profile image url.." />
                             <button className="form__btn" type="submit">Sign Up</button>
                             {err && <div style={{ color: "red", textAlign: "center" }}>*{err}</div>}
                         </Form>

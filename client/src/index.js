@@ -14,6 +14,7 @@ import { Provider } from 'react-redux'
 import AddPost from './components/addpost/AddPost';
 import PostPage from './components/postpage/PostPage';
 import UpdatePost from './components/updatePost/UpdatePost';
+import Profile from './components/profile/Profile';
 
 const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
                 path: "/update/:id",
                 element: <UpdatePost />
             },
+            {
+                path: "/profile",
+                element: <Profile />
+            }
         ]
     },
 ]);
