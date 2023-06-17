@@ -21,7 +21,7 @@ function Login({ setLog }) {
     useEffect(() => {
         if (isAuth) setLog(false)
         else setLog(true)
-    }, [isAuth])
+    }, [isAuth, setLog])
     return (
         <div className="auth__modal">
             <div onClick={() => setLog(false)} className="overlay"></div>

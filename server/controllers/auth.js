@@ -40,14 +40,12 @@ export const login = (req, res) => {
 
         const token = jwt.sign({id:data[0].id}, "ismayil")
         const user = data[0]
-        res.cookie("access_token", token, { httpOnly: true}).status(200).json({
+        res.cookie("access_token", token).status(200).json({
             user,
             token,
             message: "Succesfully logged"
         })
-
     })
-
 }
 
 export const logout = (req, res) => {

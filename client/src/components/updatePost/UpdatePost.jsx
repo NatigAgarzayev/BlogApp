@@ -1,15 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../addpost/AddPost.css"
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import axios from "axios"
 import { useNavigate, useParams } from 'react-router-dom'
-import { useSelector } from "react-redux"
-import moment from 'moment'
-
 
 function UpdatePost() {
-    const { user } = useSelector(state => state.auth)
     const [title, setTitle] = useState("")
     const [value, setValue] = useState("")
     const [img, setImg] = useState("")

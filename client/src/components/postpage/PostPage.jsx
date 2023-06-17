@@ -13,6 +13,7 @@ function PostPage() {
     const { user } = useSelector(state => state.auth)
     const isAuth = useSelector(checkIsAuth)
     const nav = useNavigate()
+    console.log(post)
     useEffect(() => {
         const fetchPost = async () => {
             const res = await axios.get(`/posts/${id}`)
@@ -45,6 +46,13 @@ function PostPage() {
                             <div className="container">
                                 <div className="post__title2">{post?.title}</div>
                                 <div className="post__info2">
+                                    {
+                                        post?.userImg && (
+                                            <div className="post__owner-ava">
+                                                <img src={post?.userImg} alt="avatar" />
+                                            </div>
+                                        )
+                                    }
                                     <div className="post__owner">{post?.username}</div>
                                     <span>•</span>
                                     <div className="post__date">{moment(post?.date).fromNow()}</div>
